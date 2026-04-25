@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chreol Empire - Digital Services & Transfert d'Argent</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #D4AF37;
+            --gold-light: #F4E8C1;
+            --black: #0a0a0a;
+            --dark-gray: #1a1a1a;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 5%;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--black);
+            font-size: 24px;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 4rem 5%;
+            background: linear-gradient(135deg, var(--black) 0%, var(--dark-gray) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%23D4AF37" opacity="0.3"/></svg>');
+            background-size: 50px 50px;
+            opacity: 0.1;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content .tagline {
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: #ccc;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--black);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--gold);
+            border: 2px solid var(--gold);
+        }
+
+        .btn-outline:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .hero-image {
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3);
+        }
+
+        .crown-badge {
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            animation: pulse 2s infinite;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 5%;
+            background: var(--dark-gray);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--gold);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 1rem auto;
+        }
+
+        .services-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, var(--black), var(--dark-gray));
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+        }
+
+        .service-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 4rem;
+            font-weight: bold;
+            color: rgba(212, 175, 55, 0.1);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--gold-light);
+        }
+
+        .service-card p {
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        .service-price {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        /* Money Transfer Section */
+        .money-transfer {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, var(--black), var(--dark-gray));
+            position: relative;
+        }
+
+        .transfer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .transfer-content h2 {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .countries-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .countries-list li {
+            padding: 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .countries-list i {
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+
+        .pricing-box {
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--black);
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .pricing-box h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-box .price {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .payment-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .payment-badge {
+            background: rgba(212, 175, 55, 0.2);
+            border: 1px solid var(--gold);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+        }
+
+        .transfer-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Partners Section */
+        .partners {
+            padding: 5rem 5%;
+            background: var(--black);
+        }
+
+        .partners-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .partner-card {
+            background: linear-gradient(135deg, var(--dark-gray), var(--black));
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .partner-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .partner-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .partner-card h3 {
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .partner-card p {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .partner-cta {
+            margin-top: 3rem;
+            text-align: center;
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.05));
+            border-radius: 20px;
+            border: 1px solid var(--gold);
+        }
+
+        .partner-cta h3 {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 5%;
+            background: var(--dark-gray);
+        }
+
+        .contact-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, var(--black), var(--dark-gray));
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .contact-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        .contact-card i {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #25D366;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            margin-top: 2rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            border-top: 2px solid var(--gold);
+            padding: 2rem 5%;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: var(--gold);
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--gold-light);
+            transform: translateY(-3px);
+        }
+
+        .footer-text {
+            color: #666;
+            margin-top: 1rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-container,
+            .transfer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">CE</div>
+                <div class="logo-text">CHREOL EMPIRE</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#transfert">Transfert</a></li>
+                <li><a href="#partenaires">Partenaires</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="accueil">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Chreol Empire</h1>
+                <p class="tagline">L'Excellence à l'État Pur</p>
+                <p>Découvrez un univers de services premium où le luxe rencontre l'efficacité. 
+                   De la création digitale aux transferts d'argent internationaux, nous sommes 
+                   votre partenaire de confiance pour tous vos projets.</p>
+                <div class="cta-buttons">
+                    <a href="#services" class="btn btn-gold">Nos Services</a>
+                    <a href="#contact" class="btn btn-outline">Nous Contacter</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="lion-couronne.jpg" alt="Lion Couronné - Symbole de Puissance">
+                <div class="crown-badge">👑</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Digital Services -->
+    <section class="services" id="services">
+        <h2 class="section-title">Nos Services Digitaux</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <span class="service-number">01</span>
+                <div class="service-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <h3>Flyers Professionnels</h3>
+                <p>Création de flyers percutants pour promouvoir vos produits et services. 
+                   Design moderne et impactant pour maximiser votre visibilité.</p>
+                <div class="service-price">À partir de 10€</div>
+            </div>
+
+            <div class="service-card">
+                <span class="service-number">02</span>
+                <div class="service-icon">
+                    <i class="fas fa-id-card"></i>
+                </div>
+                <h3>CV (FR/ENG)</h3>
+                <p>Rédaction et design de CV professionnels en français et anglais. 
+                   Mettez en valeur vos compétences pour décrocher le job de vos rêves.</p>
+                <div class="service-price">À partir de 15€</div>
+            </div>
+
+            <div class="service-card">
+                <span class="service-number">03</span>
+                <div class="service-icon">
+                    <i class="fas fa-envelope-open-text"></i>
+                </div>
+                <h3>Cartes d'Invitation</h3>
+                <p>Création de cartes d'invitation élégantes pour vos événements 
+                   professionnels et personnels. Design sur mesure.</p>
+                <div class="service-price">À partir de 10€</div>
+            </div>
+
+            <div class="service-card">
+                <span class="service-number">04</span>
+                <div class="service-icon">
+                    <i class="fas fa-pen-fancy"></i>
+                </div>
+                <h3>Lettre de Motivation</h3>
+                <p>Rédaction de lettres de motivation percutantes et personnalisées. 
+                   Démarquez-vous des autres candidats avec un discours dynamique.</p>
+                <div class="service-price">À partir de 15€</div>
+            </div>
+
+            <div class="service-card">
+                <span class="service-number">05</span>
+                <div class="service-icon">
+                    <i class="fas fa-plane-departure"></i>
+                </div>
+                <h3>Réservation Vol Retour</h3>
+                <p>Réservation de billets aller-retour et multi-destinations. 
+                   Service complet pour tous vos voyages professionnels et personnels.</p>
+                <div class="service-price">À partir de 20€</div>
+            </div>
+
+            <div class="service-card">
+                <span class="service-number">06</span>
+                <div class="service-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3>Services Sur Demande</h3>
+                <p>Besoin d'un service spécifique ? Nous sommes à votre écoute pour 
+                   tous vos projets digitaux personnalisés.</p>
+                <div class="service-price">Sur devis</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Money Transfer -->
+    <section class="money-transfer" id="transfert">
+        <div class="transfer-container">
+            <div class="transfer-content">
+                <h2><i class="fas fa-money-bill-wave"></i> Transfert d'Argent Rapide</h2>
+                <p>Envoyez de l'argent en toute sécurité vers l'Afrique avec des commissions 
+                   imbattables et un service disponible 7j/7.</p>
+                
+                <ul class="countries-list">
+                    <li><i class="fas fa-check-circle"></i> Bénin</li>
+                    <li><i class="fas fa-check-circle"></i> Burkina Faso</li>
+                    <li><i class="fas fa-check-circle"></i> Cameroun</li>
+                    <li><i class="fas fa-check-circle"></i> Côte d'Ivoire</li>
+                    <li><i class="fas fa-check-circle"></i> Gabon</li>
+                    <li><i class="fas fa-check-circle"></i> Guinée</li>
+                    <li><i class="fas fa-check-circle"></i> Niger</li>
+                    <li><i class="fas fa-check-circle"></i> Mali</li>
+                    <li><i class="fas fa-check-circle"></i> Togo</li>
+                </ul>
+
+                <div class="pricing-box">
+                    <h3>Commission Spéciale</h3>
+                    <div class="price">3€ - 6€</div>
+                    <p>Selon le montant envoyé</p>
+                </div>
+
+                <div class="payment-methods">
+                    <span class="payment-badge"><i class="fas fa-euro-sign"></i> Espèces</span>
+                    <span class="payment-badge"><i class="fas fa-university"></i> Virement</span>
+                    <span class="payment-badge"><i class="fas fa-credit-card"></i> PayPal</span>
+                    <span class="payment-badge"><i class="fas fa-mobile-alt"></i> Orange Money</span>
+                    <span class="payment-badge"><i class="fas fa-mobile-alt"></i> MTN Money</span>
+                    <span class="payment-badge"><i class="fas fa-mobile-alt"></i> Moov Money</span>
+                </div>
+            </div>
+            <div class="transfer-image">
+                <img src="transfert-argent.jpg" alt="Transfert d'argent vers l'Afrique">
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Partners -->
+    <section class="partners" id="partenaires">
+        <div class="partners-container">
+            <h2 class="section-title">Nos Partenaires d'Affaires</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #aaa; max-width: 800px; margin: 0 auto 3rem;">
+                Rejoignez notre réseau de partenaires et développez votre activité avec Chreol Empire. 
+                Ensemble, construisons l'excellence.
+            </p>
+            
+            <div class="partners-grid">
+                <div class="partner-card">
+                    <img src="partenariat-1.jpg" alt="Partenariat Business">
+                    <h3>Devenez Partenaire</h3>
+                    <p>Intégrez notre réseau et bénéficiez d'avantages exclusifs. 
+                       Commission attractive et accompagnement personnalisé.</p>
+                    <a href="#contact" class="btn btn-gold" style="margin-top: 1rem;">En Savoir Plus</a>
+                </div>
+
+                <div class="partner-card">
+                    <img src="bureau-luxe.jpg" alt="Espace de Travail">
+                    <h3>Espace Coworking</h3>
+                    <p>Accédez à nos espaces de travail premium équipés des dernières 
+                       technologies. Idéal pour entrepreneurs et freelances.</p>
+                    <a href="#contact" class="btn btn-gold" style="margin-top: 1rem;">Réserver</a>
+                </div>
+
+                <div class="partner-card">
+                    <img src="formation.jpg" alt="Formation et Coaching">
+                    <h3>Formation & Coaching</h3>
+                    <p>Programmes de formation professionnelle et coaching business 
+                       pour maximiser votre potentiel et atteindre vos objectifs.</p>
+                    <a href="#contact" class="btn btn-gold" style="margin-top: 1rem;">S'inscrire</a>
+                </div>
+
+                <div class="partner-card">
+                    <img src="investissement.jpg" alt="Opportunités d'Investissement">
+                    <h3>Opportunités d'Investissement</h3>
+                    <p>Découvrez nos projets d'investissement rentables en Afrique 
+                       et en Europe. ROI attractif garanti.</p>
+                    <a href="#contact" class="btn btn-gold" style="margin-top: 1rem;">Investir</a>
+                </div>
+            </div>
+
+            <div class="partner-cta">
+                <h3><i class="fas fa-handshake"></i> Rejoignez l'Empire</h3>
+                <p style="font-size: 1.1rem; color: #ccc; margin-bottom: 2rem;">
+                    Vous avez un projet ? Vous souhaitez collaborer avec nous ?<br>
+                    Notre équipe est prête à étudier votre proposition.
+                </p>
+                <a href="https://wa.me/306944074660" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i>
+                    Discutons de Votre Projet
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <h2 class="section-title">Contactez-Nous</h2>
+            <p style="font-size: 1.2rem; color: #aaa; margin-bottom: 3rem;">
+                Notre équipe est disponible pour répondre à toutes vos questions
+            </p>
+
+            <div class="contact-methods">
+                <div class="contact-card">
+                    <i class="fab fa-whatsapp"></i>
+                    <h3>WhatsApp</h3>
+                    <a href="https://wa.me/306944074660">+30 694 407 4660</a>
+                    <p style="margin-top: 0.5rem; color: #666; font-size: 0.9rem;">
+                        Disponible 18h-21h sur Amerikiss
+                    </p>
+                </div>
+
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Téléphone</h3>
+                    <a href="tel:+30697359867">+30 697 359 8677</a>
+                    <p style="margin-top: 0.5rem; color: #666; font-size: 0.9rem;">
+                        Du Lundi au Samedi
+                    </p>
+                </div>
+
+                <div class="contact-card">
+                    <i class="fas fa-globe"></i>
+                    <h3>Site Web</h3>
+                    <a href="https://chreolempire.com">chreolempire.com</a>
+                    <p style="margin-top: 0.5rem; color: #666; font-size: 0.9rem;">
+                        Visitez notre site
+                    </p>
+                </div>
+            </div>
+
+            <a href="https://wa.me/306944074660" class="whatsapp-btn" style="font-size: 1.2rem; padding: 1.2rem 3rem;">
+                <i class="fab fa-whatsapp"></i>
+                Écrivez-nous sur WhatsApp
+            </a>
+
+            <p style="margin-top: 2rem; color: #666; font-style: italic;">
+                <i class="fas fa-info-circle"></i> 
+                Veuillez laisser uniquement des messages écrits pour mieux vous servir.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo" style="justify-content: center; margin-bottom: 1rem;">
+                <div class="logo-text" style="font-size: 2rem;">CHREOL EMPIRE</div>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="https://wa.me/306944074660"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <p class="footer-text">
+                &copy; 2024 Chreol Empire. Tous droits réservés.<br>
+                <span style="color: var(--gold);">L'Excellence et le Luxe à Votre Service</span>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -100px 0px"
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.service-card, .partner-card, .contact-card').forEach((el) => {
+            el.style.opacity = "0";
+            el.style.transform = "translateY(30px)";
+            el.style.transition = "all 0.6s ease-out";
+            observer.observe(el);
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(10, 10, 10, 0.98)';
+                nav.style.boxShadow = '0 5px 30px rgba(212, 175, 55, 0.2)';
+            } else {
+                nav.style.background = 'rgba(10, 10, 10, 0.95)';
+                nav.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
